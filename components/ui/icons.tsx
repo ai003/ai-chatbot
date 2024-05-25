@@ -87,6 +87,25 @@ function IconNextChat({
     </svg>
   )
 }
+//paperclip icon
+export const IconPaperclip: React.FC = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    className="h-6 w-6"
+    transform="translate(2, 2)"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M15.171 7.757a4 4 0 00-5.657 0l-4.243 4.243a4 4 0 105.657 5.657l6.364-6.364a6 6 0 10-8.485-8.485l-6.364 6.364"
+    />
+  </svg>
+);
+
 
 function IconOpenAI({ className, ...props }: React.ComponentProps<'svg'>) {
   return (
@@ -475,6 +494,7 @@ function IconChevronUpDown({
     </svg>
   )
 }
+
 
 export {
   IconEdit,
