@@ -2,6 +2,7 @@
 
 import * as React from 'react'
 import Textarea from 'react-textarea-autosize'
+import axios from 'axios'
 
 import { useActions, useUIState } from 'ai/rsc'
 
@@ -32,22 +33,31 @@ export function PromptForm({
   const [_, setMessages] = useUIState<typeof AI>()
   const fileInputRef = React.useRef<HTMLInputElement>(null)
   const [showTooltip, setShowTooltip] = React.useState(true);
+  const [selectedFile, setSelectedFile] = React.useState<File>()
 
   React.useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus()
     }
   }, [])
-
+  
   //handle file upload
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //const handleFileUpload
+  //setShowTooltip(false)
+  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
-    setShowTooltip(false)
-    if (file) {
-      console.log("File selected: ", file);
-      //process file here
+    try {
+      if (!file) return
+      const formData = new FormData() //create form data
+      formData.append("userFile", file) //use it to update
+      const { data } = await axios.post("/api/app/file", formData) //make call using axios - endpoint
+      console.log(data) //logging data from backend api
+
+    } catch (error: any) {
+        console.log(error.response?.data) //if anything go
     }
   }
+  
   //if ref is on current input- and button clicked - triggers input call to func above
   const handlePaperClipClick = () => {
     if (fileInputRef.current) {
@@ -166,3 +176,34 @@ export function PromptForm({
     </form>
   )
 }
+
+
+
+
+// const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+//   const file = event.target.files?.[0]
+//   setShowTooltip(false)
+//   if (file) {
+//     console.log("File selected: ", file);
+
+//     // Create form data for file
+//     const formData = new FormData()
+//     formData.append('file', file)
+
+//     try {
+//       const response = await fetch('/api/upload', {
+//         method: 'POST',
+//         body: formData,
+//       })
+
+//       if (response.ok) {
+//         const data = await response.json();
+//         console.log('File uploaded successfully:', data);
+//       } else {
+//         console.error('File upload failed')
+//       }
+//     } catch (error) {
+//       console.error('Error uploading file:', error)
+//     }
+//   }
+// }

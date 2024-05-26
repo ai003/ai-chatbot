@@ -1,0 +1,3 @@
+"/Users/ai/cswork/ai-chatbot/node_modules/.pnpm/@ai-sdk+openai@0.0.9_zod@3.22.4/node_modules/@ai-sdk/openai/dist/index"
+
+"/Users/ai/cswork/ai-chatbot/lib/chat/actions"
