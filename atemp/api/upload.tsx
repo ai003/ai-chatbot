@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import formidable, { Fields, Files } from 'formidable'
 import fs from 'fs'
-import fetch from 'node-fetch'
+
 import { spawn } from 'child_process'
 import path from 'path'
 
@@ -45,14 +45,14 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
                 for (const filePath of filesPaths) {
                     //spawn a new python process
                     const pythonProcess = spawn('python', [
-                    //path to the Python script execute and arg passed to python script
-                    path.join(process.cwd(), 'api_process', 'process_file'), filePath])
-                    
+                        //path to the Python script execute and arg passed to python script
+                        path.join(process.cwd(), 'api_process', 'process_file'), filePath])
+
                     //listening for calls
                     pythonProcess.stdout.on('data', (data) => {
                         const result = JSON.parse(data.toString())
                         res.status(200).json(result)
-                    }) 
+                    })
 
                     pythonProcess.stderr.on('data', (data) => {
                         const result = JSON.parse(data.toString())
@@ -66,7 +66,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
         })
 
     } else {
-        res.status(405).json({error: 'Method not allowed'})
+        res.status(405).json({ error: 'Method not allowed' })
     }
 }
 
