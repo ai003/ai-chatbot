@@ -41,21 +41,22 @@ export function PromptForm({
     }
   }, [])
   
-  //handle file upload
-  //const handleFileUpload
-  //setShowTooltip(false)
+  
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
-    try {
+    //try {
       if (!file) return
       const formData = new FormData() //create form data
-      formData.append("userFile", file) //use it to update
+      formData.append("file", file) //use it to update
       const { data } = await axios.post("/api/app/file", formData) //make call using axios - endpoint
-      console.log(data) //logging data from backend api
+      //for vector upload
+   
+    // Pass the file path to the vector API
+      const response = await axios.post('/api/app/vector', {
+        filePath: data.filePath,
+    })
+      //console.log(response, data.filePath)
 
-    } catch (error: any) {
-        console.log(error.response?.data) //if anything go
-    }
   }
   
   //if ref is on current input- and button clicked - triggers input call to func above

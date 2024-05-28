@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
+
+  experimental: {
+    serverComponentsExternalPackages: ['node-appwrite'],
+  },
+
   images: {
     remotePatterns: [
       {
@@ -11,3 +16,12 @@ module.exports = {
     ]
   }
 }
+
+// /** @type {import('next').NextConfig} */
+// const nextConfig = {
+//   experimental: {
+//     serverComponentsExternalPackages: ['node-appwrite'],
+//   },
+// }
+ 
+// module.exports = nextConfig
