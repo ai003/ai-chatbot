@@ -52,9 +52,10 @@ export function PromptForm({
       //for vector upload
    
     // Pass the file path to the vector API
-      const response = await axios.post('/api/app/vector', {
-        filePath: data.filePath,
-    })
+    //Did not work
+    //   const response = await axios.post('/api/app/vector', {
+    //     filePath: data.filePath,
+    // })
       //console.log(response, data.filePath)
 
   }
