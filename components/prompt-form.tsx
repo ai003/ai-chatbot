@@ -48,7 +48,7 @@ export function PromptForm({
       if (!file) return
       const formData = new FormData() //create form data
       formData.append("file", file) //use it to update
-      //const { data } = await axios.post("/api/app/file", formData) //make call using axios - endpoint
+      const { data } = await axios.post("/api/app/file", formData) //make call using axios - endpoint
       //for vector upload
    
     // Pass the file path to the vector API
